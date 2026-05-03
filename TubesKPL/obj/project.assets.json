@@ -4931,23 +4931,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Irfan Rangga\\.nuget\\packages\\": {},
+    "C:\\Users\\NITRO V16\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Dev\\Konstruksi PL\\TubesKPL\\TubesKPL\\ManajemenPerpus.CLI.csproj",
+      "projectUniqueName": "C:\\Kuliah\\Pengujian PL\\Refrensi Tubes KPL\\Tubes-KPL\\TubesKPL\\ManajemenPerpus.CLI.csproj",
       "projectName": "ManajemenPerpus.CLI",
-      "projectPath": "D:\\Dev\\Konstruksi PL\\TubesKPL\\TubesKPL\\ManajemenPerpus.CLI.csproj",
-      "packagesPath": "C:\\Users\\Irfan Rangga\\.nuget\\packages\\",
-      "outputPath": "D:\\Dev\\Konstruksi PL\\TubesKPL\\TubesKPL\\obj\\",
+      "projectPath": "C:\\Kuliah\\Pengujian PL\\Refrensi Tubes KPL\\Tubes-KPL\\TubesKPL\\ManajemenPerpus.CLI.csproj",
+      "packagesPath": "C:\\Users\\NITRO V16\\.nuget\\packages\\",
+      "outputPath": "C:\\Kuliah\\Pengujian PL\\Refrensi Tubes KPL\\Tubes-KPL\\TubesKPL\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Irfan Rangga\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\NITRO V16\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -4962,11 +4962,11 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "D:\\Dev\\Konstruksi PL\\TubesKPL\\ManajemenPerpus.Core\\ManajemenPerpus.Core.csproj": {
-              "projectPath": "D:\\Dev\\Konstruksi PL\\TubesKPL\\ManajemenPerpus.Core\\ManajemenPerpus.Core.csproj"
+            "C:\\Kuliah\\Pengujian PL\\Refrensi Tubes KPL\\Tubes-KPL\\ManajemenPerpus.Core\\ManajemenPerpus.Core.csproj": {
+              "projectPath": "C:\\Kuliah\\Pengujian PL\\Refrensi Tubes KPL\\Tubes-KPL\\ManajemenPerpus.Core\\ManajemenPerpus.Core.csproj"
             },
-            "D:\\Dev\\Konstruksi PL\\TubesKPL\\RestAPI\\ManajemenPerpus.API.csproj": {
-              "projectPath": "D:\\Dev\\Konstruksi PL\\TubesKPL\\RestAPI\\ManajemenPerpus.API.csproj"
+            "C:\\Kuliah\\Pengujian PL\\Refrensi Tubes KPL\\Tubes-KPL\\RestAPI\\ManajemenPerpus.API.csproj": {
+              "projectPath": "C:\\Kuliah\\Pengujian PL\\Refrensi Tubes KPL\\Tubes-KPL\\RestAPI\\ManajemenPerpus.API.csproj"
             }
           }
         }
@@ -4981,7 +4981,7 @@
         "auditLevel": "low",
         "auditMode": "direct"
       },
-      "SdkAnalysisLevel": "9.0.200"
+      "SdkAnalysisLevel": "10.0.200"
     },
     "frameworks": {
       "net8.0": {
@@ -5008,7 +5008,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.202/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

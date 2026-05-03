@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -13,7 +13,7 @@ namespace ManajemenPerpus.CLI.Service
     public class BukuServiceNew
     {
         private readonly HttpClient _httpClient;
-        private readonly string _apiUrl = "https://localhost:7143/api/Buku";
+        private readonly string _apiUrl = "http://localhost:5159/api/Buku";
 
         private readonly string filePath;
 
