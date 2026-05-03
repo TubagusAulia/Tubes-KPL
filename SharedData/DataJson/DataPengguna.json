@@ -1,42 +1,22 @@
 [
   {
-    "IdPengguna": "P001",
-    "Username": "Rija132",
-    "Password": "rijaganzz",
-    "Role": "anggota",
-    "Fullname": "Rija Putra",
-    "Email": "rija@gmail.com",
-    "Phone": "0812393812321",
-    "Address": "Kobong"
+    "IdPengguna": "A001",
+    "Username": "admin",
+    "Password": "admin",
+    "Role": "admin",
+    "Fullname": "System Administrator",
+    "Email": "admin@perpus.com",
+    "Phone": "000000000000",
+    "Address": "Admin Office"
   },
   {
-    "IdPengguna": "USR002",
-    "Username": "tubagus",
-    "Password": "103022300141",
+    "IdPengguna": "U001",
+    "Username": "user",
+    "Password": "user",
     "Role": "anggota",
-    "Fullname": "",
-    "Email": "",
-    "Phone": "",
-    "Address": ""
-  },
-  {
-    "IdPengguna": "USR003",
-    "Username": "tubaagus",
-    "Password": "tubaagus",
-    "Role": "anggota",
-    "Fullname": "",
-    "Email": "",
-    "Phone": "",
-    "Address": ""
-  },
-  {
-    "IdPengguna": "USR004",
-    "Username": "aulia",
-    "Password": "aulia",
-    "Role": "anggota",
-    "Fullname": "",
-    "Email": "",
-    "Phone": "",
-    "Address": ""
+    "Fullname": "Default User",
+    "Email": "user@perpus.com",
+    "Phone": "111111111111",
+    "Address": "User Address"
   }
 ]

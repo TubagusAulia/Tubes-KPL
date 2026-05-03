@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,12 +19,12 @@ namespace ManajemenPerpus.Core.Models
     public abstract class FactoryBuku
     {
 
-        public string IdBuku { get; set; }
-        public string Judul { get; set; }
-        public string Penulis { get; set; }
-        public string Penerbit { get; set; }
-        public string Kategori { get; set; }
-        public string Sinopsis { get; set; }
+        public string IdBuku { get; set; } = string.Empty;
+        public string Judul { get; set; } = string.Empty;
+        public string Penulis { get; set; } = string.Empty;
+        public string Penerbit { get; set; } = string.Empty;
+        public string Kategori { get; set; } = string.Empty;
+        public string Sinopsis { get; set; } = string.Empty;
         public STATUSBUKU Status { get; set; } // Status default buku adalah TERSEDIA
         public DateTime TanggalMasuk { get; set; }
 

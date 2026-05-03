@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
 using ManajemenPerpus.Core.Models;
@@ -10,7 +10,7 @@ namespace ManajemenPerpus.API.Controllers
     public class UlasanController : ControllerBase
     {
         public static List<Ulasan> ulasanList = new List<Ulasan>();
-        private string filePath = Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).FullName, "SharedData", "DataJson", "DataUlasan.json");
+        private string filePath = ManajemenPerpus.Core.Helper.JsonHelper.GetSharedDataPath("DataUlasan.json");
 
         [HttpGet]
         public ActionResult<List<Ulasan>> GetAllUlasan()
@@ -30,7 +30,8 @@ namespace ManajemenPerpus.API.Controllers
             }
             else
             {
-                return NotFound("Ulasan data file not found at: " + filePath);
+                // File not found = no reviews yet, return empty list (not 404)
+                ulasanList = new List<Ulasan>();
             }
             return Ok(ulasanList);
         }

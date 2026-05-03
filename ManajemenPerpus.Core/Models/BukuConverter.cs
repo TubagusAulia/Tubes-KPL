@@ -35,11 +35,11 @@ public class BukuConverter : JsonConverter<FactoryBuku>
 
             if (kategori == "Fiksi")
             {
-                return JsonSerializer.Deserialize<BukuFiksiCreator>(root.GetRawText(), options);
+                return JsonSerializer.Deserialize<BukuFiksiCreator>(root.GetRawText(), options) ?? throw new JsonException("Deserialization returned null.");
             }
             else if (kategori == "Non Fiksi")
             {
-                return JsonSerializer.Deserialize<BukuNonFiksiCreator>(root.GetRawText(), options);
+                return JsonSerializer.Deserialize<BukuNonFiksiCreator>(root.GetRawText(), options) ?? throw new JsonException("Deserialization returned null.");
             }
             else
             {

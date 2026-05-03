@@ -17,9 +17,7 @@ namespace ManajemenPerpus.GUI
         private readonly BukuServiceNew _bukuService   = new BukuServiceNew();
         private List<Ulasan> _listUlasan = new();
 
-        private readonly string _filePath = Path.Combine(
-            Directory.GetParent(AppContext.BaseDirectory)?.Parent?.Parent?.Parent?.Parent?.FullName,
-            "SharedData", "DataJson", "DataUlasan.json");
+        private readonly string _filePath = ManajemenPerpus.Core.Helper.JsonHelper.GetSharedDataPath("DataUlasan.json");
 
         // ── UI references kept for runtime updates ────────────────────────────
         private Label _lblJudul;

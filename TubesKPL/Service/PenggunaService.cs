@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -16,8 +16,7 @@ namespace ManajemenPerpus.CLI.Service
 
         public PenggunaService()
         {
-            var root = Directory.GetParent(AppContext.BaseDirectory)?.Parent?.Parent?.Parent?.Parent?.FullName;
-            filePath = Path.Combine(root, "SharedData", "DataJson", "DataPengguna.json");
+            filePath = ManajemenPerpus.Core.Helper.JsonHelper.GetSharedDataPath("DataPengguna.json");
             _listPengguna = new List<Pengguna>();
             LoadData();
         }

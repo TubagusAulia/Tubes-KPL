@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -17,11 +17,7 @@ namespace ManajemenPerpus.CLI.Service
 
         public PinjamanService()
         {
-            string sharedDataPath = Path.Combine(
-                Directory.GetParent(Directory.GetCurrentDirectory())!.Parent!.Parent!.Parent!.FullName,
-                "SharedData", "DataJson");
-
-            _jsonFilePath = Path.Combine(sharedDataPath, "DataPinjaman.json");
+            _jsonFilePath = ManajemenPerpus.Core.Helper.JsonHelper.GetSharedDataPath("DataPinjaman.json");
             LoadData();
         }
 

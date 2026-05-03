@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -15,8 +15,7 @@ namespace ManajemenPerpus.CLI.Service
 
         public BukuService()
         {
-            var root = Directory.GetParent(AppContext.BaseDirectory)?.Parent?.Parent?.Parent?.Parent?.FullName;
-            _jsonFilePath = Path.Combine(root, "SharedData", "DataJson", "DataBuku.json");
+            _jsonFilePath = ManajemenPerpus.Core.Helper.JsonHelper.GetSharedDataPath("DataBuku.json");
             LoadData();
         }
 
@@ -27,11 +26,14 @@ namespace ManajemenPerpus.CLI.Service
                 string json = File.ReadAllText(_jsonFilePath);
                 try
                 {
-                    _listBuku = JsonSerializer.Deserialize<List<BukuDeprecated>>(json) ?? new List<BukuDeprecated>();
+                    _listBuku = JsonSerializer.Deserialize<List<BukuDeprecated>>(json, new System.Text.Json.JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    }) ?? new List<BukuDeprecated>();
                 }
-                catch (JsonException ex)
+                catch (Exception ex)
                 {
-                    Console.WriteLine($"Error deserializing JSON: {ex.Message}");
+                    Console.WriteLine($"Error loading buku data: {ex.Message}");
                     _listBuku = new List<BukuDeprecated>();
                 }
             }

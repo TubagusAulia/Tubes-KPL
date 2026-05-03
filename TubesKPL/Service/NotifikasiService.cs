@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -14,8 +14,7 @@ namespace ManajemenPerpus.CLI.Service
 
         public NotifikasiService()
         {
-            var root = Directory.GetParent(AppContext.BaseDirectory)?.Parent?.Parent?.Parent?.Parent?.FullName;
-            _jsonFilePath = Path.Combine(root, "SharedData", "DataJson", "DataNotifikasi.json");
+            _jsonFilePath = ManajemenPerpus.Core.Helper.JsonHelper.GetSharedDataPath("DataNotifikasi.json");
             _notifikasiList = new List<Notifikasi>();
             LoadAllData();
         }

@@ -11,7 +11,7 @@ namespace ManajemenPerpus.CLI.Service
     public class UlasanService
     {
         private readonly HttpClient _httpClient;
-        private readonly string _apiUrl = "http://localhost:5159/api/Ulasan";
+        private readonly string _apiUrl = ManajemenPerpus.Core.Helper.ApiConfig.BaseUrl + "api/Ulasan";
         private readonly string _filePath;
 
         private List<FactoryBuku> _listBuku;
@@ -19,8 +19,7 @@ namespace ManajemenPerpus.CLI.Service
         
         public UlasanService()
         {
-            var root = Directory.GetParent(AppContext.BaseDirectory)?.Parent?.Parent?.Parent?.Parent?.FullName;
-            _filePath = Path.Combine(root, "SharedData", "DataJson", "DataUlasan.json");
+            _filePath = ManajemenPerpus.Core.Helper.JsonHelper.GetSharedDataPath("DataUlasan.json");
             _httpClient = new HttpClient();
         }
 

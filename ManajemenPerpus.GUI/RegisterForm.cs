@@ -15,7 +15,7 @@ namespace ManajemenPerpus.GUI
     public partial class RegisterForm : Form
     {
         List<Pengguna> penggunaList;
-        string filePath = Path.Combine(Directory.GetParent(AppContext.BaseDirectory)?.Parent?.Parent?.Parent?.Parent?.FullName, "SharedData", "DataJson", "DataPengguna.json");
+        string filePath = ManajemenPerpus.Core.Helper.JsonHelper.GetSharedDataPath("DataPengguna.json");
 
         public RegisterForm()
         {

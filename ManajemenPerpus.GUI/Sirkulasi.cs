@@ -383,6 +383,13 @@ namespace ManajemenPerpus.GUI
                 return;
             }
 
+            // Guard: ensure "Cek Data" was clicked first so the date label is populated
+            if (labelDisplayBatasPengembalian.Text == "-" || string.IsNullOrWhiteSpace(labelDisplayBatasPengembalian.Text))
+            {
+                MessageBox.Show("Silakan klik 'Cek Data' terlebih dahulu untuk memuat informasi peminjaman.", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             var pinjaman = pinjamanService.GetPinjamanById(idPeminjamanInput);
             if(pinjaman == null)
             {
@@ -391,7 +398,11 @@ namespace ManajemenPerpus.GUI
             }
 
             DateTime tanggalSekarang = DateTime.Today;
-            DateTime tanggalBatas = DateTime.Parse(labelDisplayBatasPengembalian.Text);
+            if (!DateTime.TryParse(labelDisplayBatasPengembalian.Text, out DateTime tanggalBatas))
+            {
+                MessageBox.Show("Format tanggal tidak valid. Silakan klik 'Cek Data' ulang.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
             if (tanggalSekarang > tanggalBatas)
             {

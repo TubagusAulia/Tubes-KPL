@@ -62,7 +62,8 @@ namespace ManajemenPerpus.GUI
 
         private void customButton3_Click_1(object sender, EventArgs e)
         {
-            NotifikasiGui notifikasiGui = new NotifikasiGui("P001");
+            string idPengguna = SessionData.CurrentUser?.IdPengguna ?? _currentUser?.IdPengguna ?? "U001";
+            NotifikasiGui notifikasiGui = new NotifikasiGui(idPengguna);
             notifikasiGui.Show();
             this.Hide();
         }

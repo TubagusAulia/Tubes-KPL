@@ -13,14 +13,13 @@ namespace ManajemenPerpus.CLI.Service
     public class BukuServiceNew
     {
         private readonly HttpClient _httpClient;
-        private readonly string _apiUrl = "http://localhost:5159/api/Buku";
+        private readonly string _apiUrl = ManajemenPerpus.Core.Helper.ApiConfig.BaseUrl + "api/Buku";
 
         private readonly string filePath;
 
         public BukuServiceNew()
         {
-            var root = Directory.GetParent(AppContext.BaseDirectory)?.Parent?.Parent?.Parent?.Parent?.FullName;
-            filePath = Path.Combine(root, "SharedData", "DataJson", "DataBuku.json");
+            filePath = JsonHelper.GetSharedDataPath("DataBuku.json");
             _httpClient = new HttpClient();
         }
 

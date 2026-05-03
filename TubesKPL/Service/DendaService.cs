@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -16,13 +16,7 @@ namespace ManajemenPerpus.CLI.Service
 
         public DendaService()
         {
-            var sharedDataPath = Path.Combine(
-                Directory.GetParent(Directory.GetCurrentDirectory())!.Parent!.Parent!.Parent!.FullName,
-                "SharedData",
-                "DataJson"
-            );
-
-            _jsonFilePath = Path.Combine(sharedDataPath, "DataDenda.json");
+            _jsonFilePath = ManajemenPerpus.Core.Helper.JsonHelper.GetSharedDataPath("DataDenda.json");
             _dendaList = new List<Denda>();
             _bukuService = new BukuService();
             _penggunaService = new PenggunaService();

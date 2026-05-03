@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
 using ManajemenPerpus.Core.Models;
@@ -9,7 +9,7 @@ namespace ManajemenPerpus.API.Controllers
     [ApiController]
     public class BukuController : ControllerBase
     {
-        private string filePath = Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).FullName, "SharedData", "DataJson", "DataBuku.json");
+        private string filePath = ManajemenPerpus.Core.Helper.JsonHelper.GetSharedDataPath("DataBuku.json");
         private static List<FactoryBuku> listBuku = new List<FactoryBuku>();
 
         [HttpGet]

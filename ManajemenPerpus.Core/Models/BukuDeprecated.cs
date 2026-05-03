@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -46,6 +46,18 @@ namespace ManajemenPerpus.Core.Models
             Sinopsis = sinopsis;
             Status = STATUSBUKU.TERSEDIA; // status default  
             TanggalMasuk = DateTime.Now; // Set tanggal masuk ke waktu sekarang
+        }
+
+        // Parameterless constructor needed for System.Text.Json deserialization
+        public BukuDeprecated()
+        {
+            IdBuku = string.Empty;
+            Judul = string.Empty;
+            Penulis = string.Empty;
+            Penerbit = string.Empty;
+            Sinopsis = string.Empty;
+            Status = STATUSBUKU.TERSEDIA;
+            TanggalMasuk = DateTime.Now;
         }
     }
 }

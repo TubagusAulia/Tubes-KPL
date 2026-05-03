@@ -14,7 +14,7 @@ namespace ManajemenPerpus.GUI
 {
     public partial class LoginForm : Form
     {
-        MenuAdmin MenuAdmin;
+
         public LoginForm()
         {
             InitializeComponent();
@@ -36,7 +36,7 @@ namespace ManajemenPerpus.GUI
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private async void button1_Click(object sender, EventArgs e)
         {
             string username = textBox1.Text.Trim();
             string password = textBox2.Text.Trim();
@@ -47,66 +47,71 @@ namespace ManajemenPerpus.GUI
                 return;
             }
 
-            if (username == "admin" && password == "admin1234")
-            {
-                MessageBox.Show("Selamat, anda telah berhasil login sebagai Admin!");
-                MenuAdmin menuAdmin = new MenuAdmin();
-                menuAdmin.Show();
-                this.Hide();
-                return;
-            }
-            
-            // Periksa dari JSON file
+            // Periksa dari REST API
             try
             {
-                string root = Directory.GetParent(AppContext.BaseDirectory)?.Parent?.Parent?.Parent?.Parent?.FullName;
-                string filePath = System.IO.Path.Combine(root, "SharedData", "DataJson", "DataPengguna.json");
-                var penggunaList = ManajemenPerpus.Core.Helper.JsonHelper.ReadJson<ManajemenPerpus.Core.Models.Pengguna>(filePath) ?? new List<ManajemenPerpus.Core.Models.Pengguna>();
-                
-                var usersWithSameName = penggunaList.Where(p => p.Username == username).ToList();
-                if (usersWithSameName.Count > 0)
+                using (var client = new System.Net.Http.HttpClient())
                 {
-                    var user = usersWithSameName.FirstOrDefault(p => p.Password == password);
-                    if (user != null)
-                    {
-                        SessionData.CurrentUser = user;
-                        MessageBox.Show("Selamat, anda telah berhasil login sebagai Anggota!");
-                        
-                        // Testing: Send welcome back notification
-                        var notifService = new ManajemenPerpus.CLI.Service.NotifikasiService();
-                        notifService.AddNotifikasi(new ManajemenPerpus.Core.Models.Notifikasi(
-                            idNotifikasi: "N" + DateTime.Now.ToString("yyyyMMddHHmmss"),
-                            idPengguna: user.IdPengguna,
-                            isiNotifikasi: "Welcome back",
-                            tanggalNotifikasi: DateTime.Now
-                        ));
+                    client.BaseAddress = new Uri(ManajemenPerpus.Core.Helper.ApiConfig.BaseUrl);
+                    var loginData = new { Username = username, Password = password };
+                    var content = new System.Net.Http.StringContent(System.Text.Json.JsonSerializer.Serialize(loginData), System.Text.Encoding.UTF8, "application/json");
 
-                        MenuUtama menuUtama = new MenuUtama(user);
-                        menuUtama.Show();
-                        this.Hide();
+                    var response = await client.PostAsync("api/Pengguna/login", content);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var responseString = await response.Content.ReadAsStringAsync();
+                        var user = System.Text.Json.JsonSerializer.Deserialize<ManajemenPerpus.Core.Models.Pengguna>(responseString, new System.Text.Json.JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+                        
+                        if (user != null)
+                        {
+                            SessionData.CurrentUser = user;
+                            
+                            if (user.Role == ManajemenPerpus.Core.Models.Pengguna.ROLEPENGGUNA.admin)
+                            {
+                                MessageBox.Show("Selamat, anda telah berhasil login sebagai Admin!");
+                                MenuAdmin menuAdmin = new MenuAdmin();
+                                menuAdmin.Show();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Selamat, anda telah berhasil login sebagai Anggota!");
+                                
+                                // Testing: Send welcome back notification
+                                var notifService = new ManajemenPerpus.CLI.Service.NotifikasiService();
+                                notifService.AddNotifikasi(new ManajemenPerpus.Core.Models.Notifikasi(
+                                    idNotifikasi: "N" + DateTime.Now.ToString("yyyyMMddHHmmss"),
+                                    idPengguna: user.IdPengguna,
+                                    isiNotifikasi: "Welcome back",
+                                    tanggalNotifikasi: DateTime.Now
+                                ));
+
+                                MenuUtama menuUtama = new MenuUtama(user);
+                                menuUtama.Show();
+                            }
+                            
+                            this.Hide();
+                            return;
+                        }
+                    }
+                    else if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
+                    {
+                        MessageBox.Show("Password salah untuk username: " + username);
                         return;
                     }
                     else
                     {
-                        MessageBox.Show("Password salah untuk username: " + username);
+                        MessageBox.Show("Login gagal. Server merespon dengan: " + response.StatusCode);
                         return;
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error saat membaca data: " + ex.Message);
-                Console.WriteLine("Error reading data: " + ex.Message);
-            }
-
-            // Fallback hardcoded user
-            if (username == "user123" && password == "user1234")
-            {
-                MessageBox.Show("Selamat, anda telah berhasil login sebagai Anggota!");
-                MenuUtama menuUtama = new MenuUtama();
-                menuUtama.Show();
-                this.Hide();
-                return;
+                MessageBox.Show("Error saat menghubungi server API: " + ex.Message +
+                    "\n\nPastikan server API sudah berjalan di http://localhost:5159/", "Koneksi Gagal");
+                Console.WriteLine("API Error: " + ex.Message);
+                return; // return here so we don't show a second error message below
             }
 
             MessageBox.Show("Login gagal, silakan cek kembali username dan password!");
