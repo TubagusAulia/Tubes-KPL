@@ -8,5 +8,35 @@
     "Email": "rija@gmail.com",
     "Phone": "0812393812321",
     "Address": "Kobong"
+  },
+  {
+    "IdPengguna": "USR002",
+    "Username": "tubagus",
+    "Password": "103022300141",
+    "Role": "anggota",
+    "Fullname": "",
+    "Email": "",
+    "Phone": "",
+    "Address": ""
+  },
+  {
+    "IdPengguna": "USR003",
+    "Username": "tubaagus",
+    "Password": "tubaagus",
+    "Role": "anggota",
+    "Fullname": "",
+    "Email": "",
+    "Phone": "",
+    "Address": ""
+  },
+  {
+    "IdPengguna": "USR004",
+    "Username": "aulia",
+    "Password": "aulia",
+    "Role": "anggota",
+    "Fullname": "",
+    "Email": "",
+    "Phone": "",
+    "Address": ""
   }
 ]

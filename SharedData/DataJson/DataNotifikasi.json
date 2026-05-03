@@ -2,25 +2,31 @@
   {
     "IdNotifikasi": "N001",
     "IdPengguna": "P001",
-    "IsiNotifikasi": "Peminjaman buku 'Clean Code' telah berhasil dilakukan",
+    "IsiNotifikasi": "Peminjaman buku \u0027Clean Code\u0027 telah berhasil dilakukan",
     "TanggalNotifikasi": "2023-05-15T10:30:45"
   },
   {
     "IdNotifikasi": "N002",
     "IdPengguna": "P001",
-    "IsiNotifikasi": "Buku 'Design Patterns' harus dikembalikan sebelum 2023-06-01",
+    "IsiNotifikasi": "Buku \u0027Design Patterns\u0027 harus dikembalikan sebelum 2023-06-01",
     "TanggalNotifikasi": "2023-05-20T14:15:22"
   },
   {
     "IdNotifikasi": "N003",
     "IdPengguna": "P001",
-    "IsiNotifikasi": "Pengingat: Buku 'Refactoring' akan segera jatuh tempo",
+    "IsiNotifikasi": "Pengingat: Buku \u0027Refactoring\u0027 akan segera jatuh tempo",
     "TanggalNotifikasi": "2023-05-25T09:05:33"
   },
   {
     "IdNotifikasi": "N004",
     "IdPengguna": "P001",
-    "IsiNotifikasi": "Peminjaman buku 'Domain-Driven Design' telah diperpanjang",
+    "IsiNotifikasi": "Peminjaman buku \u0027Domain-Driven Design\u0027 telah diperpanjang",
     "TanggalNotifikasi": "2023-05-28T16:45:10"
+  },
+  {
+    "IdNotifikasi": "N20260503224123",
+    "IdPengguna": "USR004",
+    "IsiNotifikasi": "Welcome back",
+    "TanggalNotifikasi": "2026-05-03T22:41:23.7877908+07:00"
   }
 ]

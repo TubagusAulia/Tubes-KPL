@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.Json;
@@ -11,7 +11,7 @@ namespace ManajemenPerpus.CLI.Service
     public class UlasanService
     {
         private readonly HttpClient _httpClient;
-        private readonly string _apiUrl = "https://localhost:7143/api/Ulasan";
+        private readonly string _apiUrl = "http://localhost:5159/api/Ulasan";
         private readonly string _filePath;
 
         private List<FactoryBuku> _listBuku;

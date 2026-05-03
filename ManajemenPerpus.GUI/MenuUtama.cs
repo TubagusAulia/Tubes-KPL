@@ -2,14 +2,33 @@ namespace ManajemenPerpus.GUI
 {
     public partial class MenuUtama : Form
     {
-        public MenuUtama()
+        private ManajemenPerpus.Core.Models.Pengguna _currentUser;
+
+        public MenuUtama(ManajemenPerpus.Core.Models.Pengguna user = null)
         {
             InitializeComponent();
+            this.FormClosed += (s, args) => Application.Exit();
+            _currentUser = user;
+            if (user != null) SessionData.CurrentUser = user;
+            
+            this.ClientSize = new System.Drawing.Size(1008, 729);
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            
+            // Hide designer navbar, inject standard one
+            panel1.Visible = false;
+            var navbar = UIHelper.BuildNavbar(this, true);
+            this.Controls.Add(navbar); // added last = highest index = docks at very top
         }
 
         private void MenuUtama_Load(object sender, EventArgs e)
         {
-
+            if (_currentUser != null)
+            {
+                string nama = string.IsNullOrWhiteSpace(_currentUser.Fullname) ? _currentUser.Username : _currentUser.Fullname;
+                
+                label3.Font = new Font("Consolas", 16F, FontStyle.Regular, GraphicsUnit.Point, 0);
+                label3.Text = $"Di Aplikasi Manajemen Perpustakaan\n\nNama anggota : {nama}\nID anggota   : {_currentUser.IdPengguna}";
+            }
         }
 
         private void customButton1_Click(object sender, EventArgs e)

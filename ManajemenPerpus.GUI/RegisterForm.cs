@@ -1,4 +1,4 @@
-﻿using ManajemenPerpus.Core.Helper;
+using ManajemenPerpus.Core.Helper;
 using ManajemenPerpus.Core.Models;
 using System;
 using System.Collections.Generic;
@@ -15,7 +15,7 @@ namespace ManajemenPerpus.GUI
     public partial class RegisterForm : Form
     {
         List<Pengguna> penggunaList;
-        string filePath = @"D:\Dev\Konstruksi PL\TubesKPL\SharedData\DataJson\DataPengguna.json";
+        string filePath = Path.Combine(Directory.GetParent(AppContext.BaseDirectory)?.Parent?.Parent?.Parent?.Parent?.FullName, "SharedData", "DataJson", "DataPengguna.json");
 
         public RegisterForm()
         {
@@ -49,9 +49,9 @@ namespace ManajemenPerpus.GUI
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string username = textBox1.Text;
-            string password = textBox2.Text;
-            string confirmPassword = textBox3.Text;
+            string username = textBox1.Text.Trim();
+            string password = textBox2.Text.Trim();
+            string confirmPassword = textBox3.Text.Trim();
 
             if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
             {
@@ -63,6 +63,30 @@ namespace ManajemenPerpus.GUI
             {
                 MessageBox.Show("Password yang dimasukkan tidak tepat");
                 return;
+            }
+
+            try 
+            {
+                penggunaList = JsonHelper.ReadJson<Pengguna>(filePath) ?? new List<Pengguna>();
+                if (penggunaList.Any(p => p.Username == username))
+                {
+                    MessageBox.Show("Username sudah digunakan. Silakan pilih username lain.");
+                    return;
+                }
+
+                string newId = "USR" + (penggunaList.Count + 1).ToString("D3");
+                Pengguna newUser = new Pengguna(newId, username, password, Pengguna.ROLEPENGGUNA.anggota, "", "", "", "");
+                penggunaList.Add(newUser);
+
+                Directory.CreateDirectory(Path.GetDirectoryName(filePath));
+                JsonHelper.WriteJson(filePath, penggunaList);
+
+                MessageBox.Show("Registrasi berhasil!");
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error saat registrasi: " + ex.Message);
             }
         }
     }
